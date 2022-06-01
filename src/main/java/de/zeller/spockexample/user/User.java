@@ -1,6 +1,6 @@
 package de.zeller.spockexample.user;
 
-import de.zeller.spockexample.task.Task;
+import de.zeller.spockexample.task.service.Task;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

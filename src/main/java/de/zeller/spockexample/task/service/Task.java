@@ -1,4 +1,4 @@
-package de.zeller.spockexample.task;
+package de.zeller.spockexample.task.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
