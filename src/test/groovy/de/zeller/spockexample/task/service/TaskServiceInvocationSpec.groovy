@@ -16,7 +16,7 @@ class TaskServiceInvocationSpec extends Specification {
         1 * taskRepository.save(_,_)
     }
 
-    def "task with title is null noti saved in repo"() {
+    def "task with title is null not saved in repo"() {
         when:
         taskService.createTask(null, "Task description")
 
