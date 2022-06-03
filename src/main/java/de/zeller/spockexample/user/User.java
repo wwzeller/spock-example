@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Getter
@@ -14,4 +15,5 @@ public class User {
     private int id;
     private String name;
     private List<Task> tasks;
+    private OffsetDateTime updatetAt;
 }
