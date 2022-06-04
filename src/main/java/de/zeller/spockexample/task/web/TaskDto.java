@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class TaskDto {
+    private int id;
     private String title;
     private String description;
 }

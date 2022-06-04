@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>To-Do App</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<body>
+<div class="main">
+    <div class="head">
+        <h2>To-Do App</h2>
+        <form method="post" th:action="@{/create}" th:object="${taskDto}">
+            <input id="title" placeholder="Task title" type="text" size="30" th:field="*{title}"/>
+            <input id="description" placeholder="Enter description" type="text" size="80" th:field="*{description}"/>
+            <input class="button1" type="submit" value="Erstellen">
+        </form>
+    </div>
+    <div class="task-panel" th:each="task : ${tasks}">
+        <button class="accordion" th:text="${taskStat.index} + 1 + ' - '+ ${task.title}"></button>
+        <div class="description">
+            <p th:text="${task.description}"></p>
+        </div>
+        <div class="btn-group">
+            <form method="post" th:action="@{/delete}" th:object="${taskDto}">
+                <input type="hidden" name="id" id="taskId" th:value="${task.id}"/>
+                <button class="button button1" type="submit">Löschen</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</body>
+</html>

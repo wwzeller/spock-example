@@ -3,33 +3,36 @@ package de.zeller.spockexample.task.web;
 import de.zeller.spockexample.task.service.Task;
 import de.zeller.spockexample.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class TaskController {
     private final TaskService taskService;
 
-    @PostMapping("/task")
-    public ResponseEntity<Task> create(@RequestBody TaskDto task) {
-        Task result = taskService.createTask(task.getTitle(), task.getDescription());
-
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+    @PostMapping("/create")
+    public String create(@ModelAttribute TaskDto taskDto) {
+        taskService.createTask(taskDto.getTitle(), taskDto.getDescription());
+        return "redirect:";
     }
 
-    @DeleteMapping("/task/{id}")
-    public ResponseEntity<String> delete(@PathVariable int id) {
-        taskService.delete(id);
-
-        return ResponseEntity.accepted().build();
+    @PostMapping("/delete")
+    public String delete(@ModelAttribute TaskDto taskDto) {
+        taskService.delete(taskDto.getId());
+        return "redirect:";
     }
 
-    @GetMapping("/task")
-    public ResponseEntity<List<Task>> getAll() {
-        return ResponseEntity.ok(taskService.getAll());
+    @GetMapping
+    public String getAll(Model model) {
+        List<Task> tasks = taskService.getAll();
+        model.addAttribute("tasks", tasks);
+        model.addAttribute("taskDto", new TaskDto());
+        return "main";
     }
 }
