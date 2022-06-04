@@ -5,9 +5,9 @@ import spock.lang.Specification
 import spock.lang.Subject
 
 class TaskServiceDelegationSpec extends Specification {
-    def taskRepository = new TaskRepository()
+    def static final taskRepository = new TaskRepository()
     @Subject
-    def taskService = new TaskService(taskRepository)
+    def static final taskService = new TaskService(taskRepository)
 
     @Delegate
     FixturesDelegate fixturesDelegate
