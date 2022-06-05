@@ -1,6 +1,8 @@
-package de.zeller.spockexample.task.service
+package de.zeller.spockexample.task.unit
 
 import de.zeller.spockexample.task.repository.TaskRepository
+import de.zeller.spockexample.task.FixturesDelegate
+import de.zeller.spockexample.task.service.TaskService
 import spock.lang.Specification
 import spock.lang.Subject
 

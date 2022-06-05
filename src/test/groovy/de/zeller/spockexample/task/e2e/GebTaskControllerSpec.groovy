@@ -1,4 +1,4 @@
-package de.zeller.spockexample.task
+package de.zeller.spockexample.task.e2e
 
 class GebTaskControllerSpec extends BaseGebSpec {
 

@@ -1,4 +1,4 @@
-package de.zeller.spockexample.task.service
+package de.zeller.spockexample.task
 
 import de.zeller.spockexample.task.repository.TaskRepository
 import groovy.transform.TupleConstructor

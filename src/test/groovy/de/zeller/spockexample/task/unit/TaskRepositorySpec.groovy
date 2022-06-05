@@ -1,4 +1,4 @@
-package de.zeller.spockexample.task
+package de.zeller.spockexample.task.unit
 
 import de.zeller.spockexample.task.repository.TaskRepository
 import de.zeller.spockexample.task.service.Status

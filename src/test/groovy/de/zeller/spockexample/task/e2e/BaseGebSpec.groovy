@@ -1,8 +1,7 @@
-package de.zeller.spockexample.task
+package de.zeller.spockexample.task.e2e
 
 import de.zeller.spockexample.SpockExampleApplication
 import geb.spock.GebSpec
-import io.github.bonigarcia.wdm.WebDriverManager
 import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
 import spock.lang.AutoCleanup

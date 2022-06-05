@@ -13,8 +13,8 @@
     <div class="head">
         <h2>To-Do App</h2>
         <form method="post" th:action="@{/create}" th:object="${taskDto}">
-            <input id="title" placeholder="Task title" type="text" size="30" th:field="*{title}"/>
-            <input id="description" placeholder="Enter description" type="text" size="80" th:field="*{description}"/>
+            <input id="title" placeholder="Task title" type="text" size="20" th:field="*{title}"/>
+            <input id="description" placeholder="Enter description" type="text" size="30" th:field="*{description}"/>
             <input id="submit_button" class="button1" type="submit" value="Erstellen">
         </form>
     </div>
