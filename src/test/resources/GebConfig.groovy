@@ -1,26 +1,19 @@
+import io.github.bonigarcia.wdm.WebDriverManager
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager
-import io.github.bonigarcia.wdm.managers.FirefoxDriverManager
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 
 reportsDir = "target/geb-reports"
-baseUrl= "http://localhost:8081"
-environments {
-    chrome {
-        // tag::chromedriver[]
-        ChromeDriverManager.getInstance().setup()
-        driver = { new ChromeDriver() }
-        // end::chromedriver[]
+baseUrl = "http://localhost:8081"
+
+enviroments {
+    firefox {
+        WebDriverManager.firefoxdriver().setup()
+        driver = { new  FirefoxDriver() }
     }
 
-    firefox {
-        driver = { new FirefoxDriver() }
+    chrome {
+        ChromeDriverManager.chromedriver().setup()
+        driver = { new ChromeDriver() }
     }
 }
-
-////driver = {
-////    FirefoxDriverManager.getInstance().setup()
-////    new FirefoxDriver()
-////}
-//ChromeDriverManager.getInstance().setup()
-//driver = { new ChromeDriver() }
