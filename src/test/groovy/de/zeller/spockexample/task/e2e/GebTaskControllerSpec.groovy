@@ -1,15 +1,14 @@
 package de.zeller.spockexample.task.e2e
 
+import de.zeller.spockexample.task.e2e.pages.MainPage
+
 class GebTaskControllerSpec extends BaseGebSpec {
 
-    def "Name"() {
+    def "basic test to check if mainpage is loaded"() {
         when:
-        go "/"
+        to MainPage
 
         then:
-        waitFor {
-            title == "To-Do App"
-        }
-        title.startsWithAny("To-Do App")
+        submitButtonValue == "Erstellen"
     }
 }

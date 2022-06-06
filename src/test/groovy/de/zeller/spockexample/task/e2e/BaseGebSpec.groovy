@@ -1,7 +1,7 @@
 package de.zeller.spockexample.task.e2e
 
 import de.zeller.spockexample.SpockExampleApplication
-import geb.spock.GebSpec
+import geb.spock.GebReportingSpec
 import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
 import spock.lang.AutoCleanup
@@ -12,7 +12,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.Future
 import java.util.concurrent.TimeUnit
 
-class BaseGebSpec extends GebSpec {
+class BaseGebSpec extends GebReportingSpec {
 
     @Shared
     @AutoCleanup
