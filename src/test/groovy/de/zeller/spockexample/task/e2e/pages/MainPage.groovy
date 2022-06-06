@@ -11,6 +11,6 @@ class MainPage extends Page {
     }
 
     static content = {
-        submitButtonValue() { $("#submit_button").value() }
+        submitButtonValue { $("#submit_button").value() }
     }
 }
