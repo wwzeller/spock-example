@@ -18,16 +18,18 @@
             <input id="submit_button" class="button1" type="submit" value="Erstellen">
         </form>
     </div>
-    <div class="task-panel" th:each="task : ${tasks}">
-        <button class="accordion" th:text="${taskStat.index} + 1 + ' - '+ ${task.title}"></button>
-        <div class="description">
-            <p th:text="${task.description}"></p>
-        </div>
-        <div class="btn-group">
-            <form method="post" th:action="@{/delete}" th:object="${taskDto}">
-                <input type="hidden" name="id" id="taskId" th:value="${task.id}"/>
-                <button class="button button1" type="submit">Löschen</button>
-            </form>
+    <div id="task_list">
+        <div class="task-panel" th:each="task : ${tasks}">
+            <button class="accordion" th:text="${taskStat.index} + 1 + ' - '+ ${task.title}"></button>
+            <div class="description">
+                <p th:text="${task.description}"></p>
+            </div>
+            <div class="btn-group">
+                <form method="post" th:action="@{/delete}" th:object="${taskDto}">
+                    <input type="hidden" name="id" id="taskId" th:value="${task.id}"/>
+                    <button class="button button1" type="submit">Löschen</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -46,6 +48,7 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+
 </script>
 
 

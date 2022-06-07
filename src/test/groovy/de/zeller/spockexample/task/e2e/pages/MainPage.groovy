@@ -11,6 +11,17 @@ class MainPage extends Page {
     }
 
     static content = {
-        submitButtonValue { $("#submit_button").value() }
+        titleField { $("#title") }
+        descriptionField { $("#description") }
+        submitButton { $("#submit_button") }
+        taskList {
+            $(".main > div:nth-child(2)").module(TaskListModule)
+        }
+    }
+
+    void createTask(String title, String description) {
+        titleField.value(title)
+        descriptionField.value(description)
+        submitButton.click()
     }
 }
