@@ -1,6 +1,6 @@
 package de.zeller.spockexample.task.e2e
 
-import de.zeller.spockexample.task.e2e.BaseGebSpec
+
 import de.zeller.spockexample.task.e2e.pages.MainPage
 
 class GebTaskControllerSpec extends BaseGebSpec {
@@ -13,7 +13,7 @@ class GebTaskControllerSpec extends BaseGebSpec {
         title == "To-Do App"
     }
 
-    def"create first task"(){
+    def "create first task"() {
         when:
         to MainPage
 
