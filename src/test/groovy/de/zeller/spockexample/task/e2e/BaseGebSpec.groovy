@@ -1,32 +1,18 @@
 package de.zeller.spockexample.task.e2e
 
-import de.zeller.spockexample.SpockExampleApplication
+
+import de.zeller.spockexample.task.repository.TaskRepository
 import geb.spock.GebReportingSpec
-import org.springframework.boot.SpringApplication
-import org.springframework.context.ConfigurableApplicationContext
-import spock.lang.AutoCleanup
-import spock.lang.Shared
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 
-import java.util.concurrent.Callable
-import java.util.concurrent.Executors
-import java.util.concurrent.Future
-import java.util.concurrent.TimeUnit
-
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class BaseGebSpec extends GebReportingSpec {
 
-    @Shared
-    @AutoCleanup
-    ConfigurableApplicationContext context
+    @Autowired
+    private TaskRepository taskRepository
 
-    void setupSpec() {
-        Future future = Executors.newSingleThreadExecutor().submit(
-                new Callable() {
-                    @Override
-                    ConfigurableApplicationContext call() throws Exception {
-                        return (ConfigurableApplicationContext) SpringApplication
-                                .run(SpockExampleApplication.class)
-                    }
-                })
-        context = future.get(60, TimeUnit.SECONDS) as ConfigurableApplicationContext
+    void setup() {
+        taskRepository.deleteAll()
     }
 }

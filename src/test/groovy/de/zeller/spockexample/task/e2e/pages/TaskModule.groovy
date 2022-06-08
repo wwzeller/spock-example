@@ -4,6 +4,8 @@ import geb.Module
 
 class TaskModule extends Module {
     static content = {
+        titleButton { $(".accordion") }
         titleButtonText { $(".accordion").text() }
+        descriptionText { $(".description > p").text() }
     }
 }

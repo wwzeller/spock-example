@@ -5,6 +5,7 @@ import de.zeller.spockexample.task.service.Task;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,5 +32,9 @@ public class TaskRepository {
 
     public void delete(int id) {
         tasks.removeIf(task -> task.getId() == id);
+    }
+
+    public void deleteAll(){
+        tasks.clear();
     }
 }
