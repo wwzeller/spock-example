@@ -12,7 +12,7 @@ class MainPage extends Page {
 
     static content = {
         titleField { $("#title") }
-        descriptionField { $("#description") }
+        dueDateField { $("#due_date") }
         submitButton { $("#submit_button") }
         taskList {
             $(".main > div:nth-child(2)").module(TaskListModule)
@@ -21,7 +21,7 @@ class MainPage extends Page {
 
     void createTask(String title, String description) {
         titleField.value(title)
-        descriptionField.value(description)
+        dueDateField.value(description)
         submitButton.click()
     }
 }

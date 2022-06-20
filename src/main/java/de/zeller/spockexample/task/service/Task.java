@@ -4,12 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
 public class Task {
-    private int id;
+    private Integer id;
     private String title;
     private String description;
-    private Status status;
+    private boolean isCompleted;
+    private LocalDate dueDate;
 }

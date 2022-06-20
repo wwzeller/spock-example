@@ -1,11 +1,10 @@
 package de.zeller.spockexample.task.repository;
 
-import de.zeller.spockexample.task.service.Status;
 import de.zeller.spockexample.task.service.Task;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,8 +12,12 @@ import java.util.Optional;
 public class TaskRepository {
     private final List<Task> tasks = new ArrayList<>();
 
-    public Task save(String title, String description) {
-        Task task = new Task(tasks.size() + 1, title, description, Status.NOT_ASSIGNED);
+    public Task save(String title, String description, LocalDate dueDate) {
+        Task task = new Task(tasks.size() + 1,
+                title,
+                description,
+                false,
+                dueDate);
         tasks.add(task);
 
         return task;
@@ -34,7 +37,7 @@ public class TaskRepository {
         tasks.removeIf(task -> task.getId() == id);
     }
 
-    public void deleteAll(){
+    public void deleteAll() {
         tasks.clear();
     }
 }

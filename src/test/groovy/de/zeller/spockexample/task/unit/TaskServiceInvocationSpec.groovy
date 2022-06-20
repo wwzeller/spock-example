@@ -6,6 +6,9 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
+import java.time.LocalDate
+
+import static de.zeller.spockexample.task.TestData.task
 import static org.hamcrest.Matchers.equalTo
 
 class TaskServiceInvocationSpec extends Specification {
@@ -13,17 +16,28 @@ class TaskServiceInvocationSpec extends Specification {
     @Subject
     def taskService = new TaskService(taskRepository)
 
-    def "task is saved in repo"() {
+    def "mock"() {
+        given:
+        taskRepository.findAll() >> [task(1)]
+
         when:
-        taskService.createTask("Task title", "Task description")
+        def all = taskService.getAll()
 
         then:
-        1 * taskRepository.save(_, _)
+        !all.get(0).isCompleted()
+    }
+
+    def "ein Task wird in dem Repository gespeichert"() {
+        when: "task service"
+        taskService.createTask("Titel der Aufgabe", "Aufgabenbeschreibung...", LocalDate.now())
+
+        then: "die Methode 'save' wird 1x aufgerufen"
+        1 * taskRepository.save(_, _, _)
     }
 
     def "task with title is null not saved in repo"() {
         when:
-        taskService.createTask(null, "Task description")
+        taskService.createTask(null, "Task description", LocalDate.now())
 
         then:
         thrown(IllegalArgumentException)
@@ -31,38 +45,50 @@ class TaskServiceInvocationSpec extends Specification {
     }
 
     def "capture with mock"() {
+        given:
+        def now = LocalDate.now()
+
         when:
-        taskService.createTask("Title", "Description")
+        taskService.createTask("Title", "Description", now)
 
         then:
-        1 * taskRepository.save("Title", "Description")
+        1 * taskRepository.save("Title", "Description", now)
     }
 
     def "using a closure"() {
+        given:
+        def now = LocalDate.now()
+
         when:
-        taskService.createTask("Title", "Description")
+        taskService.createTask("Title", "Description", now)
 
         then:
-        1 * taskRepository.save("Title", {
-            it == "Description"
-        })
+        1 * taskRepository.save(
+                "Title",
+                {
+                    it == "Description"
+                },
+                now)
     }
 
     def "using a hamcrest matcher"() {
+        given:
+        def now = LocalDate.now()
+
         when:
-        taskService.createTask("Title", "Description")
+        taskService.createTask("Title", "Description", now)
 
         then:
-        1 * taskRepository.save("Title", equalTo("Description"))
+        1 * taskRepository.save("Title", equalTo("Description"), now)
     }
 
     def "verifying mock with with"() {
         when:
-        taskService.createTask("Title", "Description")
+        taskService.createTask("Title", "Description", LocalDate.now())
 
         then:
         with(taskRepository) {
-            1 * save(_, _)
+            1 * save(_, _, _)
         }
     }
 

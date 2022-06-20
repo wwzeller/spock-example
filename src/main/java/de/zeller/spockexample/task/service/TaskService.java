@@ -4,6 +4,7 @@ import de.zeller.spockexample.task.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -11,11 +12,11 @@ import java.util.List;
 public class TaskService {
     private final TaskRepository taskRepository;
 
-    public Task createTask(String title, String description) {
-        if (title == null){
+    public Task createTask(String title, String description, LocalDate dueDate) {
+        if (title == null) {
             throw new IllegalArgumentException();
         }
-        return taskRepository.save(title, description);
+        return taskRepository.save(title, description, dueDate);
     }
 
     public void delete(int id) {

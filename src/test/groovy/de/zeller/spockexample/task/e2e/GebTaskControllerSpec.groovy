@@ -21,7 +21,7 @@ class GebTaskControllerSpec extends BaseGebSpec {
 
         then:
         taskList.tasks[0].titleButtonText == "1 - Test title 1"
-        taskList.tasks[0].descriptionText == ""
+        taskList.tasks[0].dueDate.text() == ""
     }
 
     def "create first task and click on title"() {
@@ -31,6 +31,7 @@ class GebTaskControllerSpec extends BaseGebSpec {
         and:
         createTask("Test title 1", "test description")
         taskList.tasks[0].titleButton.click()
+
         then:
         taskList.tasks[0].titleButtonText == "1 - Test title 1"
         taskList.tasks[0].descriptionText == "test description"

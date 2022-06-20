@@ -1,10 +1,12 @@
 package de.zeller.spockexample.task.unit
 
-import de.zeller.spockexample.task.repository.TaskRepository
 import de.zeller.spockexample.task.FixturesDelegate
+import de.zeller.spockexample.task.repository.TaskRepository
 import de.zeller.spockexample.task.service.TaskService
 import spock.lang.Specification
 import spock.lang.Subject
+
+import java.time.LocalDate
 
 class TaskServiceDelegationSpec extends Specification {
     def static final taskRepository = new TaskRepository()
@@ -20,7 +22,7 @@ class TaskServiceDelegationSpec extends Specification {
 
     def "task is saved in repo"() {
         when:
-        saveTask("Task title", "Task description")
+        saveTask("Task title", "Task description", LocalDate.now())
 
         then:
         taskService.getAll().size() == 1

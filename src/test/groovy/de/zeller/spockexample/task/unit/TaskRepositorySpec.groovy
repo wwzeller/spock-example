@@ -1,8 +1,9 @@
 package de.zeller.spockexample.task.unit
 
 import de.zeller.spockexample.task.repository.TaskRepository
-import de.zeller.spockexample.task.service.Status
 import spock.lang.Specification
+
+import java.time.LocalDate
 
 class TaskRepositorySpec extends Specification {
     def taskRepository = new TaskRepository()
@@ -10,21 +11,24 @@ class TaskRepositorySpec extends Specification {
     //  assertion by using every
     def "all tasks get the same status when created"() {
         given:
-        taskRepository.save("Task Nr.1", "Task 1 description")
-        taskRepository.save("Task Nr.2", "Task 2 description")
+        def now = LocalDate.now()
+
+        and:
+        taskRepository.save("Task Nr.1", "Task 1 description", now)
+        taskRepository.save("Task Nr.2", "Task 2 description", now)
 
         expect:
         taskRepository.findAll().size() == 2
-        taskRepository.findAll().status.every {
-            it == Status.NOT_ASSIGNED
+        taskRepository.findAll().dueDate.every {
+            it == now
         }
     }
 
     // assertion by using spread operator
     def "title is set correctly"() {
         given:
-        taskRepository.save("Task Nr.1", "Task 1 description")
-        taskRepository.save("Task Nr.2", "Task 2 description")
+        taskRepository.save("Task Nr.1", "Task 1 description", LocalDate.now())
+        taskRepository.save("Task Nr.2", "Task 2 description", LocalDate.now())
 
         expect:
         taskRepository.findAll()*.title == ["Task Nr.1", "Task Nr.2"]
@@ -33,8 +37,8 @@ class TaskRepositorySpec extends Specification {
 
     def "description is set correctly"() {
         given:
-        taskRepository.save("Task Nr.1", "Task 1 description")
-        taskRepository.save("Task Nr.2", "Task 2 description")
+        taskRepository.save("Task Nr.1", "Task 1 description", LocalDate.now())
+        taskRepository.save("Task Nr.2", "Task 2 description", LocalDate.now())
 
         expect:
         taskRepository.findAll()*.description == ["Task 1 description", "Task 2 description"]
@@ -42,8 +46,8 @@ class TaskRepositorySpec extends Specification {
 
     def "ids will be set correctly"() {
         given:
-        taskRepository.save("Task Nr.1", "Task 1 description")
-        taskRepository.save("Task Nr.2", "Task 2 description")
+        taskRepository.save("Task Nr.1", "Task 1 description", LocalDate.now())
+        taskRepository.save("Task Nr.2", "Task 2 description", LocalDate.now())
 
         expect:
         taskRepository.findAll()*.id == [1, 2]
@@ -56,15 +60,15 @@ class TaskRepositorySpec extends Specification {
 
     def "find existing task"() {
         given:
-        taskRepository.save("Task Nr.1", "Task 1 description")
+        taskRepository.save("Task Nr.1", "Task 1 description", LocalDate.now())
 
         expect:
         taskRepository.findById(1).isPresent()
     }
 
-    def "delete existing task"(){
+    def "delete existing task"() {
         given:
-        taskRepository.save("Task Nr.1", "Task 1 description")
+        taskRepository.save("Task Nr.1", "Task 1 description", LocalDate.now())
 
         expect:
         taskRepository.findById(1).isPresent()
@@ -76,7 +80,7 @@ class TaskRepositorySpec extends Specification {
         taskRepository.findById(1).isEmpty()
     }
 
-    def "delete no existing task"(){
+    def "delete no existing task"() {
         expect:
         taskRepository.findAll().size() == 0
 
