@@ -29,7 +29,8 @@
                     <br/>
                     <span class="description_span" th:text="${task.description}"></span>
                     <br/>
-                    <span class="due_date_span" th:text="'fällig am ' + ${task.dueDate}"></span>
+                    <span th:if ="${task.isCompleted}" class="done_span">Done!</span>
+                    <span th:unless ="${task.isCompleted}" class="due_date_span" th:text="'fällig am ' + ${task.dueDate}"></span>
                 </button>
             </form>
             <form method="post" th:action="@{/delete}" th:object="${taskDto}">

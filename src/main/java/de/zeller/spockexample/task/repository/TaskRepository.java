@@ -28,9 +28,7 @@ public class TaskRepository {
     }
 
     public Optional<Task> findById(int id) {
-        return tasks.stream()
-                .filter(task -> task.getId() == id)
-                .findFirst();
+        return findTaskById(id);
     }
 
     public void delete(int id) {
@@ -39,5 +37,16 @@ public class TaskRepository {
 
     public void deleteAll() {
         tasks.clear();
+    }
+
+    public void switchCompleted(int id) {
+        findTaskById(id)
+                .ifPresent(task -> task.setCompleted(!task.isCompleted()));
+    }
+
+    private Optional<Task> findTaskById(int id) {
+        return tasks.stream()
+                .filter(task -> task.getId() == id)
+                .findFirst();
     }
 }

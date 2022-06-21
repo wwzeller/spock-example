@@ -26,4 +26,8 @@ public class TaskService {
     public List<Task> getAll() {
         return taskRepository.findAll();
     }
+
+    public void statusChange(int id) {
+        taskRepository.switchCompleted(id);
+    }
 }

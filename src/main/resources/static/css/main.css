@@ -28,7 +28,7 @@ input[type=text] {
 
 .title_span {
     color: black;
-    font-size: 20px;
+    font-size: 28px;
 }
 
 .description_span {
@@ -39,8 +39,14 @@ input[type=text] {
 
 .due_date_span {
     color: #00169c;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: normal;
+}
+
+.done_span {
+    color: #41903a;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .task {
@@ -75,5 +81,5 @@ input[type=text] {
 }
 
 .task:hover, .button1:hover {
-    background-color: #B0B0B0;
+    background-color: #D8D8D8;
 }
