@@ -1,15 +1,10 @@
 body {
     background-color: #F5F5F5;
-    width: 80%;
+    width: 100%;
 }
 
 .main {
     margin: 100px;
-}
-
-.head {
-    display: flex;
-    justify-content: space-between;
 }
 
 input[type=date] {
@@ -20,6 +15,7 @@ input[type=date] {
 }
 
 input[type=text] {
+    width: auto;
     font-size: 16px;
     padding:10px;
     border:0;
@@ -40,7 +36,7 @@ input[type=text] {
     font-weight: bold;
     background-color: #DCDCDC;
     color: #444;
-    padding: 18px;
+    padding: 28px;
     width: 100%;
     border: none;
     text-align: left;
@@ -48,14 +44,10 @@ input[type=text] {
     font-size: 16px;
 }
 
-.active, .accordion:hover .button1:hover{
-    background-color: #B0B0B0;
-}
-
 .btn-group .button {
     background-color: lightgray;
     color: #444;
-    padding: 1px 6px;
+    padding: 9px 6px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -66,7 +58,11 @@ input[type=text] {
 
 .button1{
     background-color: lightgray;
-    padding: 3px;
+    padding: 9px;
     color: black;
     border: 2px solid #e7e7e7;
+}
+
+.accordion:hover, .button1:hover {
+    background-color: #B0B0B0;
 }
