@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,20 +31,24 @@ public class TaskController {
     }
 
     @PostMapping("/statusChange")
-    public String change(@ModelAttribute TaskDto taskDto){
+    public String change(@ModelAttribute TaskDto taskDto) {
         taskService.statusChange(taskDto.getId());
         return "redirect:";
     }
 
     @GetMapping
     public String getAll(Model model) {
-        List<TaskDto> tasks = taskService.getAll().stream().map(
-                        task -> new TaskDto(task.getId(),
-                                task.getTitle(),
-                                task.getDescription(),
-                                task.getDueDate().toString(),
-                                task.isCompleted())
+        List<TaskDto> tasks = taskService.getAll()
+                .stream()
+                .map(task -> new TaskDto(task.getId(),
+                        task.getTitle(),
+                        task.getDescription(),
+                        task.getDueDate().toString(),
+                        task.isCompleted())
                 )
+                .sorted(Comparator
+                        .comparing(TaskDto::isCompleted)
+                        .thenComparing(TaskDto::getDueDate))
                 .collect(Collectors.toList());
         model.addAttribute("tasks", tasks);
         model.addAttribute("taskDto", new TaskDto());
