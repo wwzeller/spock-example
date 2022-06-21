@@ -25,7 +25,7 @@
             <form method="post" th:action="@{/statusChange}" th:object="${taskDto}">
                 <input type="hidden" name="id" th:value="${task.id}"/>
                 <button class="task">
-                    <span class="title_span" th:text="${task.title}"></span>
+                    <span class="title_span" th:text="${task.id} +'. '+ ${task.title}"></span>
                     <br/>
                     <span class="description_span" th:text="${task.description}"></span>
                     <br/>

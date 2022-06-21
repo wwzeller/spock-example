@@ -4,16 +4,14 @@ import de.zeller.spockexample.task.service.Task;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class TaskRepository {
     private final List<Task> tasks = new ArrayList<>();
 
     public Task save(String title, String description, LocalDate dueDate) {
-        Task task = new Task(tasks.size() + 1,
+        Task task = new Task(buildNewId(),
                 title,
                 description,
                 false,
@@ -48,5 +46,10 @@ public class TaskRepository {
         return tasks.stream()
                 .filter(task -> task.getId() == id)
                 .findFirst();
+    }
+
+    private int buildNewId() {
+        return tasks.isEmpty() ? 1 :
+                Collections.max(tasks, Comparator.comparingInt(Task::getId)).getId() + 1;
     }
 }
