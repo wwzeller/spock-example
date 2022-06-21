@@ -14,30 +14,36 @@
         <h2>To-Do App</h2>
         <form method="post" th:action="@{/create}" th:object="${taskDto}">
             <input id="title" placeholder="Aufgabenname hinzufügen" type="text" size="30" th:field="*{title}"/>
-            <input id="description" placeholder="Beschreibung hinzufügen..." type="text" size="80" th:field="*{description}"/>
+            <input id="description" placeholder="Beschreibung hinzufügen..." type="text" size="80"
+                   th:field="*{description}"/>
             <input id="due_date" type="date" placeholder="01.06.2022" th:field="*{dueDate}"/>
             <input id="submit_button" class="button button1" type="submit" value="Erstellen">
         </form>
     </div>
     <div id="task_list">
         <div class="task-panel" th:each="task : ${tasks}">
-            <button class="accordion">
-                <span class = "title_span" th:text="${task.title}"></span>
-                <br/>
-                <span class="description_span" th:text="${task.description}"></span>
-                <br/>
-                <span class="due_date_span" th:text="'fällig am ' + ${task.dueDate}"></span>
-            </button>
-                <form method="post" th:action="@{/delete}" th:object="${taskDto}">
-                    <input type="hidden" name="id" id="taskId" th:value="${task.id}"/>
-                    <button class="button button1" type="submit">Löschen</button>
-                </form>
+            <form method="post" th:action="@{/statusChange}" th:object="${taskDto}">
+                <input type="hidden" name="id" th:value="${task.id}"/>
+                <button class="task">
+                    <span class="title_span" th:text="${task.title}"></span>
+                    <br/>
+                    <span class="description_span" th:text="${task.description}"></span>
+                    <br/>
+                    <span class="due_date_span" th:text="'fällig am ' + ${task.dueDate}"></span>
+                </button>
+            </form>
+            <form method="post" th:action="@{/delete}" th:object="${taskDto}">
+                <input type="hidden" name="id" id="taskId" th:value="${task.id}"/>
+                <button class="button button1" type="submit">Löschen</button>
+            </form>
         </div>
     </div>
 </div>
 <script>
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#due_date").value = today;
+
+
 </script>
 
 
