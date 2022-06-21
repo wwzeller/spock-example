@@ -1,5 +1,4 @@
 body {
-    background-color: #F5F5F5;
     width: 100%;
 }
 
@@ -10,16 +9,14 @@ body {
 input[type=date] {
     font-size: 16px;
     padding:10px;
-    border:0;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border: 1px dashed #E0E0E0;
 }
 
 input[type=text] {
     width: auto;
     font-size: 16px;
     padding:10px;
-    border:0;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border: 1px dashed #E0E0E0;
 }
 
 .task-panel {
@@ -51,35 +48,39 @@ input[type=text] {
 
 .task {
     font-weight: bold;
-    background-color: #DCDCDC;
+    background-color: #F8F8F8;
     color: #444;
     padding: 28px;
     width: 100%;
-    border: none;
+    border: 1px dotted #E0E0E0;
     text-align: left;
     outline: none;
     font-size: 16px;
 }
 
-.btn-group .button {
-    background-color: lightgray;
-    color: #444;
-    padding: 9px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    float: left;
-}
-
-.button1{
-    background-color: lightgray;
-    padding: 9px;
+.delete_button{
+    background-color: #F8F8F8;
+    padding: 8px;
     color: black;
-    border: 2px solid #e7e7e7;
+    border: 1px dotted #E0E0E0;
+    border-top: none;
 }
 
-.task:hover, .button1:hover {
-    background-color: #D8D8D8;
+.create_button{
+    background-color: #F8F8F8;
+    padding: 10px;
+    color: black;
+    border: 1px solid #4CAF50;
+}
+
+.task:hover {
+    background-color: #F5F5F5;
+}
+
+.delete_button:hover{
+    background-color: #F44336;
+}
+
+.create_button:hover {
+    background-color: #4CAF50;
 }

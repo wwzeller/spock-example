@@ -17,7 +17,7 @@
             <input id="description" placeholder="Beschreibung hinzufügen..." type="text" size="80"
                    th:field="*{description}"/>
             <input id="due_date" type="date" placeholder="01.06.2022" th:field="*{dueDate}"/>
-            <input id="submit_button" class="button button1" type="submit" value="Erstellen">
+            <input id="submit_button" class="button create_button" type="submit" value="Erstellen">
         </form>
     </div>
     <div id="task_list">
@@ -35,7 +35,7 @@
             </form>
             <form method="post" th:action="@{/delete}" th:object="${taskDto}">
                 <input type="hidden" name="id" id="taskId" th:value="${task.id}"/>
-                <button class="button button1" type="submit">Löschen</button>
+                <button class="button delete_button" type="submit">Löschen</button>
             </form>
         </div>
     </div>
