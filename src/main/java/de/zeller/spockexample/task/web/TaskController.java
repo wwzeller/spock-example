@@ -1,5 +1,6 @@
 package de.zeller.spockexample.task.web;
 
+import de.zeller.spockexample.task.service.Task;
 import de.zeller.spockexample.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -40,18 +41,25 @@ public class TaskController {
     public String getAll(Model model) {
         List<TaskDto> tasks = taskService.getAll()
                 .stream()
-                .map(task -> new TaskDto(task.getId(),
-                        task.getTitle(),
-                        task.getDescription(),
-                        task.getDueDate().toString(),
-                        task.isCompleted())
-                )
-                .sorted(Comparator
-                        .comparing(TaskDto::isCompleted)
-                        .thenComparing(TaskDto::getDueDate))
+                .map(this::toDto)
+                .sorted(comparator())
                 .collect(Collectors.toList());
+
         model.addAttribute("tasks", tasks);
         model.addAttribute("taskDto", new TaskDto());
         return "main";
+    }
+
+    private Comparator<TaskDto> comparator() {
+        return Comparator.comparing(TaskDto::isCompleted)
+                .thenComparing(TaskDto::getDueDate);
+    }
+
+    private TaskDto toDto(Task task) {
+        return new TaskDto(task.getId(),
+                task.getTitle(),
+                task.getDescription(),
+                task.getDueDate().toString(),
+                task.isCompleted());
     }
 }
