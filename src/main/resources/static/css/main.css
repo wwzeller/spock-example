@@ -26,9 +26,20 @@ input[type=text] {
     margin-top: 10px;
 }
 
-.due_date_span {
-    color: #004d99;
+.title_span {
+    color: black;
+    font-size: 20px;
+}
+
+.description_span {
+    color: black;
     font-size: 18px;
+    font-weight: normal;
+}
+
+.due_date_span {
+    color: #00169c;
+    font-size: 14px;
     font-weight: normal;
 }
 
