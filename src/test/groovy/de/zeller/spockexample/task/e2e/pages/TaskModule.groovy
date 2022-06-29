@@ -4,8 +4,10 @@ import geb.Module
 
 class TaskModule extends Module {
     static content = {
-        titleButton { $(".accordion") }
-        titleButtonText { $(".accordion").text() }
-        descriptionText { $(".description > p").text() }
+        taskButton { $(".task_form > .task") }
+        taskTitle { $(".task_form > .task > .title_span").text() }
+        descriptionText { $(".task_form > .task > .description_span").text() }
+        dueDateText { $(".task_form > .task > .due_date_span").text() }
+        doneText { $(".task_form > .task > .done_span").text() }
     }
 }

@@ -22,9 +22,9 @@
     </div>
     <div id="task_list">
         <div class="task-panel" th:each="task : ${tasks}">
-            <form method="post" th:action="@{/statusChange}" th:object="${taskDto}">
+            <form class="task_form" method="post" th:action="@{/statusChange}" th:object="${taskDto}">
                 <input type="hidden" name="id" th:value="${task.id}"/>
-                <button class="task">
+                <button type="submit" class="task">
                     <span class="title_span" th:text="${task.id} +'. '+ ${task.title}"></span>
                     <br/>
                     <span class="description_span" th:text="${task.description}"></span>

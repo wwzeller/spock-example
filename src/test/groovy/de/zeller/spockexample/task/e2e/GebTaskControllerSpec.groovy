@@ -1,6 +1,9 @@
 package de.zeller.spockexample.task.e2e
 
+
 import de.zeller.spockexample.task.e2e.pages.MainPage
+
+import java.time.LocalDate
 
 class GebTaskControllerSpec extends BaseGebSpec {
 
@@ -17,11 +20,12 @@ class GebTaskControllerSpec extends BaseGebSpec {
         to MainPage
 
         and:
-        createTask("Test title 1", "test description")
+        createTask("Test title", "test description")
 
         then:
-        taskList.tasks[0].titleButtonText == "1 - Test title 1"
-        taskList.tasks[0].dueDate.text() == ""
+        taskList.tasks[0].taskTitle == "1. Test title"
+        taskList.tasks[0].descriptionText == "test description"
+        taskList.tasks[0].dueDateText == "fällig am " + LocalDate.now().toString()
     }
 
     def "create first task and click on title"() {
@@ -29,11 +33,12 @@ class GebTaskControllerSpec extends BaseGebSpec {
         to MainPage
 
         and:
-        createTask("Test title 1", "test description")
-        taskList.tasks[0].titleButton.click()
+        createTask("Test title", "test description")
+        taskList.tasks[0].taskButton.click()
 
         then:
-        taskList.tasks[0].titleButtonText == "1 - Test title 1"
+        taskList.tasks[0].taskTitle == "1. Test title"
         taskList.tasks[0].descriptionText == "test description"
+        taskList.tasks[0].doneText == "Done!"
     }
 }
