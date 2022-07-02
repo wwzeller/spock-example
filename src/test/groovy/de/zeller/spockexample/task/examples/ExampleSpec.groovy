@@ -1,9 +1,8 @@
 package de.zeller.spockexample.task.examples
 
+
 import spock.lang.Ignore
 import spock.lang.Specification
-
-import java.time.LocalDate
 
 class ExampleSpec extends Specification {
 

@@ -32,7 +32,7 @@ class TaskServiceInvocationSpec extends Specification {
         taskService.createTask("Titel der Aufgabe", "Aufgabenbeschreibung...", LocalDate.now())
 
         then: "die Methode 'save' wird 1x aufgerufen"
-        1 * taskRepository.save(_, _, _)
+        1 * taskRepository.createNewTask(_, _, _)
     }
 
     def "task with title is null not saved in repo"() {
@@ -41,7 +41,7 @@ class TaskServiceInvocationSpec extends Specification {
 
         then:
         thrown(IllegalArgumentException)
-        0 * taskRepository.save(_, _)
+        0 * taskRepository.createNewTask(_, _)
     }
 
     def "capture with mock"() {
@@ -52,7 +52,7 @@ class TaskServiceInvocationSpec extends Specification {
         taskService.createTask("Title", "Description", now)
 
         then:
-        1 * taskRepository.save("Title", "Description", now)
+        1 * taskRepository.createNewTask("Title", "Description", now)
     }
 
     def "using a closure"() {
@@ -63,7 +63,7 @@ class TaskServiceInvocationSpec extends Specification {
         taskService.createTask("Title", "Description", now)
 
         then:
-        1 * taskRepository.save(
+        1 * taskRepository.createNewTask(
                 "Title",
                 {
                     it == "Description"
@@ -79,7 +79,7 @@ class TaskServiceInvocationSpec extends Specification {
         taskService.createTask("Title", "Description", now)
 
         then:
-        1 * taskRepository.save("Title", equalTo("Description"), now)
+        1 * taskRepository.createNewTask("Title", equalTo("Description"), now)
     }
 
     def "verifying mock with with"() {
@@ -88,7 +88,7 @@ class TaskServiceInvocationSpec extends Specification {
 
         then:
         with(taskRepository) {
-            1 * save(_, _, _)
+            1 * createNewTask(_, _, _)
         }
     }
 

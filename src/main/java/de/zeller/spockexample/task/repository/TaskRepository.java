@@ -10,12 +10,9 @@ import java.util.*;
 public class TaskRepository {
     private final List<Task> tasks = new ArrayList<>();
 
-    public Task save(String title, String description, LocalDate dueDate) {
-        Task task = new Task(buildNewId(),
-                title,
-                description,
-                false,
-                dueDate);
+    public Task createNewTask(String title, String description, LocalDate dueDate) {
+        int id = generateId();
+        Task task = new Task(id, title, description, false, dueDate);
         tasks.add(task);
 
         return task;
@@ -48,7 +45,7 @@ public class TaskRepository {
                 .findFirst();
     }
 
-    private int buildNewId() {
+    private int generateId() {
         return tasks.isEmpty() ? 1 :
                 Collections.max(tasks, Comparator.comparingInt(Task::getId)).getId() + 1;
     }

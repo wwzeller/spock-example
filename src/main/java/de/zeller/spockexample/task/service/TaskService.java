@@ -16,7 +16,7 @@ public class TaskService {
         if (title == null) {
             throw new IllegalArgumentException();
         }
-        return taskRepository.save(title, description, dueDate);
+        return taskRepository.createNewTask(title, description, dueDate);
     }
 
     public void delete(int id) {
