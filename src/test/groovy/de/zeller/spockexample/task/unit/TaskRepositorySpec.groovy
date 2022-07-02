@@ -8,7 +8,32 @@ import java.time.LocalDate
 class TaskRepositorySpec extends Specification {
     def taskRepository = new TaskRepository()
 
-    //  assertion by using every
+    def "neu erstellte Task bekommt eine neue ID"() {
+        when:
+        def result = taskRepository.createNewTask("Lorem ipsum",
+                "Quis hendrerit dolor magna eget est lorem ipsum dolor sit.",
+                LocalDate.now())
+
+        then:
+        result.id == 1
+    }
+
+    def "status bei neu erstelltem Task"() {
+        given: "Aufgabentitel und -beschreibung"
+        def title = "Lorem ipsum"
+        def description = "Quis hendrerit dolor magna eget est lorem ipsum dolor sit."
+
+        and: "Faelligkeitsdatum"
+        def dueDate = LocalDate.now()
+
+        when: "Neuer Task wir mit gegeben Daten erstellt"
+        def result = taskRepository.createNewTask(title, description, dueDate)
+
+        then: "Der neu erstellter Task ist noch nicht abgeschlossen"
+        !result.completed
+    }
+
+//  assertion by using every
     def "all tasks get the same status when created"() {
         given:
         def now = LocalDate.now()
