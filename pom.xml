@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.zeller</groupId>
-    <artifactId>spock-example</artifactId>
+    <artifactId>todo-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spock-example</name>
-    <description>Demo project for Spock and Geb Framework</description>
+    <name>todo-app</name>
+    <description>Demo project: Spock and Geb Framework</description>
     <properties>
         <java.version>17</java.version>
     </properties>

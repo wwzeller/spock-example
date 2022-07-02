@@ -14,7 +14,6 @@ public class TaskRepository {
         int id = generateId();
         Task task = new Task(id, title, description, false, dueDate);
         tasks.add(task);
-
         return task;
     }
 
@@ -36,11 +35,9 @@ public class TaskRepository {
         tasks.clear();
     }
 
-    public void switchCompleted(int id) {
-        findById(id)
-                .ifPresent(task -> task.setCompleted(!task.isCompleted()));
+    public void toggleStatus(int id) {
+        findById(id).ifPresent(task -> task.setCompleted(!task.isCompleted()));
     }
-
 
     private int generateId() {
         return tasks.isEmpty() ? 1 :

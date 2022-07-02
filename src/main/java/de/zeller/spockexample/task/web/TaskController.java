@@ -33,7 +33,7 @@ public class TaskController {
 
     @PostMapping("/statusChange")
     public String change(@ModelAttribute TaskDto taskDto) {
-        taskService.statusChange(taskDto.getId());
+        taskService.toggleStatus(taskDto.getId());
         return "redirect:";
     }
 
