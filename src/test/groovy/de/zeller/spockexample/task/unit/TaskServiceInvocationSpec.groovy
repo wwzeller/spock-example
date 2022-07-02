@@ -29,7 +29,7 @@ class TaskServiceInvocationSpec extends Specification {
 
         then:
         result.size() == 1
-        result.get(0).id == 2
+        result.get(0).id == taskB.id
     }
 
     def "ein Task wird in dem Repository gespeichert"() {
