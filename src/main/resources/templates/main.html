@@ -29,8 +29,9 @@
                     <br/>
                     <span class="description_span" th:text="${task.description}"></span>
                     <br/>
-                    <span th:if ="${task.isCompleted}" class="done_span">Done!</span>
-                    <span th:unless ="${task.isCompleted}" class="due_date_span" th:text="'fällig am ' + ${task.dueDate}"></span>
+                    <span th:if="${task.isCompleted}" class="done_span">Done!</span>
+                    <span th:unless="${task.isCompleted}" class="due_date_span"
+                          th:text="'fällig am ' + ${task.dueDate}"></span>
                 </button>
             </form>
             <form method="post" th:action="@{/delete}" th:object="${taskDto}">
@@ -44,10 +45,7 @@
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#due_date").value = today;
 
-
 </script>
-
-
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
 </body>
 </html>
