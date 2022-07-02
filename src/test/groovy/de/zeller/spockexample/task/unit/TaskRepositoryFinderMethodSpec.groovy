@@ -19,12 +19,17 @@ class TaskRepositoryFinderMethodSpec extends Specification {
         taskRepository.deleteAll()
     }
 
-    def "das TaskRepo hat zwei Tasks"() {
+    def "TaskRepo hat zwei Tasks"() {
         when:
         def result = taskRepository.findAll()
 
         then:
         result.size() == 2
+    }
+
+    def "ein Test mit einer Hilfsmethode"() {
+        expect:
+        verifyTaskCount(2)
     }
 
     def "Task bei ID finden"() {
@@ -41,5 +46,9 @@ class TaskRepositoryFinderMethodSpec extends Specification {
 
         then:
         !result.isPresent()
+    }
+
+    def verifyTaskCount(int count){
+         taskRepository.findAll().size() == count
     }
 }
