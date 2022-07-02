@@ -1,6 +1,7 @@
 package de.zeller.spockexample.task.unit
 
 import de.zeller.spockexample.task.repository.TaskRepository
+import de.zeller.spockexample.task.service.Task
 import de.zeller.spockexample.task.service.TaskService
 import spock.lang.Specification
 import spock.lang.Subject
@@ -8,7 +9,6 @@ import spock.lang.Unroll
 
 import java.time.LocalDate
 
-import static de.zeller.spockexample.task.TestData.task
 import static org.hamcrest.Matchers.equalTo
 
 class TaskServiceInvocationSpec extends Specification {
@@ -16,15 +16,20 @@ class TaskServiceInvocationSpec extends Specification {
     @Subject
     def taskService = new TaskService(taskRepository)
 
-    def "mock"() {
+    def "die Methode getCompletedTasks liefert nur abgeschlossene Tasks"() {
         given:
-        taskRepository.findAll() >> [task(1)]
+        def taskA = new Task(1, "TitelA", "BeschreibungA", false, LocalDate.now())
+        def taskB = new Task(2, "TitelB", "BeschreibungB", true, LocalDate.now())
+
+        and:
+        taskRepository.findAll() >> [taskA, taskB]
 
         when:
-        def all = taskService.getAll()
+        def result = taskService.getCompletedTasks()
 
         then:
-        !all.get(0).isCompleted()
+        result.size() == 1
+        result.get(0).id == 2
     }
 
     def "ein Task wird in dem Repository gespeichert"() {
