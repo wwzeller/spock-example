@@ -19,17 +19,17 @@ class TaskRepositorySpec extends Specification {
     }
 
     def "status bei neu erstelltem Task"() {
-        given: "Aufgabentitel und -beschreibung"
+        given: "Der Titel und die Beschreibung"
         def title = "Lorem ipsum"
         def description = "Quis hendrerit dolor magna eget est lorem ipsum dolor sit."
 
         and: "Faelligkeitsdatum"
         def dueDate = LocalDate.now()
 
-        when: "Neuer Task wir mit gegeben Daten erstellt"
+        when: "Neuer Task wird erstellt"
         def result = taskRepository.createNewTask(title, description, dueDate)
 
-        then: "Der neu erstellter Task ist noch nicht abgeschlossen"
+        then: "Der neu erstellte Task ist noch nicht abgeschlossen"
         !result.completed
     }
 
