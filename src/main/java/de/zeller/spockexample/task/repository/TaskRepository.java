@@ -10,7 +10,7 @@ import java.util.*;
 public class TaskRepository {
     private final List<Task> tasks = new ArrayList<>();
 
-    public Task createNewTask(String title, String description, LocalDate dueDate) {
+    public Task save(String title, String description, LocalDate dueDate) {
         int id = generateId();
         Task task = new Task(id, title, description, false, dueDate);
         tasks.add(task);

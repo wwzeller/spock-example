@@ -10,6 +10,6 @@ class FixturesDelegate {
     final TaskRepository taskRepository
 
     void saveTask(String title, String description, LocalDate dueDate) {
-        taskRepository.createNewTask(title, description, dueDate)
+        taskRepository.save(title, description, dueDate)
     }
 }

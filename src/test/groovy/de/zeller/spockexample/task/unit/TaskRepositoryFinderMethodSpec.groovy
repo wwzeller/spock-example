@@ -11,8 +11,8 @@ class TaskRepositoryFinderMethodSpec extends Specification {
     def taskRepository = new TaskRepository()
 
     void setupSpec() {
-        taskRepository.createNewTask("Aufgabe 1", "Das ist eine Testaufgabe", LocalDate.now())
-        taskRepository.createNewTask("Aufgabe 2", "Das ist die zweite Testaufgabe", LocalDate.now())
+        taskRepository.save("Aufgabe 1", "Das ist eine Testaufgabe", LocalDate.now())
+        taskRepository.save("Aufgabe 2", "Das ist die zweite Testaufgabe", LocalDate.now())
     }
 
     void cleanupSpec() {
