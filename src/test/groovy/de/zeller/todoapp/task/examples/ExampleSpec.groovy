@@ -1,4 +1,4 @@
-package de.zeller.spockexample.task.examples
+package de.zeller.todoapp.task.examples
 
 
 import spock.lang.Ignore

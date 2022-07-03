@@ -1,4 +1,4 @@
-package de.zeller.spockexample.task.e2e.pages
+package de.zeller.todoapp.task.e2e.pages
 
 import geb.Module
 

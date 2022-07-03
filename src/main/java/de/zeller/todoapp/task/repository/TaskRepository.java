@@ -1,6 +1,6 @@
-package de.zeller.spockexample.task.repository;
+package de.zeller.todoapp.task.repository;
 
-import de.zeller.spockexample.task.service.Task;
+import de.zeller.todoapp.task.service.Task;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

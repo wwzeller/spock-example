@@ -1,18 +1,18 @@
-package de.zeller.spockexample.task.service;
+package de.zeller.todoapp.task.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-public class Task {
-    private Integer id;
+public class TaskDto {
+    private int id;
     private String title;
     private String description;
+    private String dueDate;
     private boolean isCompleted;
-    private LocalDate dueDate;
 }

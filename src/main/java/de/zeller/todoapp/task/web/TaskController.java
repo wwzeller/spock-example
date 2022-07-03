@@ -1,7 +1,7 @@
-package de.zeller.spockexample.task.web;
+package de.zeller.todoapp.task.web;
 
-import de.zeller.spockexample.task.service.Task;
-import de.zeller.spockexample.task.service.TaskService;
+import de.zeller.todoapp.task.service.Task;
+import de.zeller.todoapp.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

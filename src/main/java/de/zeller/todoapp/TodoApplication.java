@@ -1,4 +1,4 @@
-package de.zeller.spockexample;
+package de.zeller.todoapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

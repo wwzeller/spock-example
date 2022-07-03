@@ -1,6 +1,6 @@
-package de.zeller.spockexample.task
+package de.zeller.todoapp.task
 
-import de.zeller.spockexample.task.service.Task
+import de.zeller.todoapp.task.service.Task
 
 import java.time.LocalDate
 

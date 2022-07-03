@@ -1,8 +1,8 @@
-package de.zeller.spockexample.task.unit
+package de.zeller.todoapp.task.unit
 
-import de.zeller.spockexample.task.repository.TaskRepository
-import de.zeller.spockexample.task.service.Task
-import de.zeller.spockexample.task.service.TaskService
+import de.zeller.todoapp.task.repository.TaskRepository
+import de.zeller.todoapp.task.service.Task
+import de.zeller.todoapp.task.service.TaskService
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
@@ -30,6 +30,14 @@ class TaskServiceInvocationSpec extends Specification {
         then:
         result.size() == 1
         result.get(0).id == taskB.id
+    }
+
+    def "Aufgabenname darf nicht null sein"() {
+        when:
+        taskService.createTask(null, "Beschreibung", LocalDate.now())
+
+        then:
+        thrown(IllegalArgumentException)
     }
 
     def "ein Task wird in dem Repository gespeichert"() {
@@ -95,6 +103,17 @@ class TaskServiceInvocationSpec extends Specification {
         with(taskRepository) {
             1 * save(_, _, _)
         }
+    }
+
+    def "test mit data pipe"() {
+        when:
+        taskService.createTask("TestTitel", description, LocalDate.now())
+
+        then:
+        noExceptionThrown()
+
+        where:
+        description << [null, "Beschreibung", ""]
     }
 
     @Unroll

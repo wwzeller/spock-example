@@ -1,6 +1,6 @@
-package de.zeller.spockexample.task.unit
+package de.zeller.todoapp.task.unit
 
-import de.zeller.spockexample.task.repository.TaskRepository
+import de.zeller.todoapp.task.repository.TaskRepository
 import spock.lang.Specification
 
 import java.time.LocalDate
@@ -15,7 +15,10 @@ class TaskRepositorySpec extends Specification {
                 LocalDate.now())
 
         then:
-        result.id == 1
+        verifyAll {
+            result.id == 1
+            !result.completed
+        }
     }
 
     def "status bei neu erstelltem Task"() {

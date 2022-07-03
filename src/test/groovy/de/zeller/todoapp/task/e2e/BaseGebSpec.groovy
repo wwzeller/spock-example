@@ -1,7 +1,7 @@
-package de.zeller.spockexample.task.e2e
+package de.zeller.todoapp.task.e2e
 
 
-import de.zeller.spockexample.task.repository.TaskRepository
+import de.zeller.todoapp.task.repository.TaskRepository
 import geb.spock.GebReportingSpec
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

@@ -1,8 +1,8 @@
-package de.zeller.spockexample.task.unit
+package de.zeller.todoapp.task.unit
 
-import de.zeller.spockexample.task.FixturesDelegate
-import de.zeller.spockexample.task.repository.TaskRepository
-import de.zeller.spockexample.task.service.TaskService
+import de.zeller.todoapp.task.FixturesDelegate
+import de.zeller.todoapp.task.repository.TaskRepository
+import de.zeller.todoapp.task.service.TaskService
 import spock.lang.Specification
 import spock.lang.Subject
 

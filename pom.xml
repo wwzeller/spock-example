@@ -75,23 +75,11 @@
             <version>2.2-M1-groovy-3.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy</artifactId>
-            <version>3.0.10</version>
-            <scope>test</scope>
-        </dependency>
 
         <!-- geb -->
         <dependency>
             <groupId>org.gebish</groupId>
             <artifactId>geb-spock</artifactId>
-            <version>5.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.gebish</groupId>
-            <artifactId>geb-core</artifactId>
             <version>5.1</version>
             <scope>test</scope>
         </dependency>

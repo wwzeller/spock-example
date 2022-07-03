@@ -1,6 +1,6 @@
-package de.zeller.spockexample.task.service;
+package de.zeller.todoapp.task.service;
 
-import de.zeller.spockexample.task.repository.TaskRepository;
+import de.zeller.todoapp.task.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package de.zeller.spockexample.task.e2e
+package de.zeller.todoapp.task.e2e
 
 
-import de.zeller.spockexample.task.e2e.pages.MainPage
+import de.zeller.todoapp.task.e2e.pages.MainPage
 
 import java.time.LocalDate
 

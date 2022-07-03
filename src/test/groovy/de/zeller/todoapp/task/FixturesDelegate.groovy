@@ -1,6 +1,6 @@
-package de.zeller.spockexample.task
+package de.zeller.todoapp.task
 
-import de.zeller.spockexample.task.repository.TaskRepository
+import de.zeller.todoapp.task.repository.TaskRepository
 import groovy.transform.TupleConstructor
 
 import java.time.LocalDate
