@@ -105,17 +105,6 @@ class TaskServiceInvocationSpec extends Specification {
         }
     }
 
-    def "test mit data pipe"() {
-        when:
-        taskService.createTask("TestTitel", description, LocalDate.now())
-
-        then:
-        noExceptionThrown()
-
-        where:
-        description << [null, "Beschreibung", ""]
-    }
-
     @Unroll
     def "maximum of #a and #b is #c"() {
         expect:

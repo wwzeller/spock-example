@@ -118,4 +118,29 @@ class TaskRepositorySpec extends Specification {
         then:
         noExceptionThrown()
     }
+
+    def "test mit data table"() {
+        when:
+        def result = taskRepository.save(title, description, dueDate)
+
+        then:
+        result.id == expected
+
+        where:
+        title       | description    | dueDate         || expected
+        "TestTitel" | null           | LocalDate.now() || 1
+        "TestTitel" | "Beschreibung" | LocalDate.now() || 1
+        "TestTitel" | ""             | LocalDate.now() || 1
+    }
+
+    def "test mit data pipe"() {
+        when:
+        def result = taskRepository.save("TestTitel", description, LocalDate.now())
+
+        then:
+        result.id == 1
+
+        where:
+        description << [null, "Beschreibung", ""]
+    }
 }
