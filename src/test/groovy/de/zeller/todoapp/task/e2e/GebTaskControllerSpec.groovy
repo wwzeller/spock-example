@@ -7,12 +7,12 @@ import java.time.LocalDate
 
 class GebTaskControllerSpec extends BaseGebSpec {
 
-    def "basic test to check if mainpage is loaded"() {
+    def "basic geb test"() {
         when:
         to MainPage
 
         then:
-        title == "To-Do App"
+        submitButton.value() == "Erstellen"
     }
 
     def "create first task"() {
@@ -26,6 +26,17 @@ class GebTaskControllerSpec extends BaseGebSpec {
         taskList.tasks[0].taskTitle == "1. Test title"
         taskList.tasks[0].descriptionText == "test description"
         taskList.tasks[0].dueDateText == "fällig am " + LocalDate.now().toString()
+    }
+
+    def "Erster Task"() {
+        when:
+        to MainPage
+
+        and:
+        createTask("Test title", "test description")
+
+        then:
+        taskList.tasks.size() == 1
     }
 
     def "create first task and click on title"() {
