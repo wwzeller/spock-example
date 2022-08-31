@@ -12,7 +12,7 @@ public class TaskRepository {
 
     public Task save(String title, String description, LocalDate dueDate) {
         title = title.trim();
-        if (title.isBlank() || title.isEmpty()){
+        if (title.isBlank() || title.length() < 3) {
             throw new IllegalArgumentException();
         }
         Task task = new Task(generateId(), title, description, false, dueDate);
