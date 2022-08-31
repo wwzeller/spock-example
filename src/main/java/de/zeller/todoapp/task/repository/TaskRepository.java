@@ -11,8 +11,11 @@ public class TaskRepository {
     private final List<Task> tasks = new ArrayList<>();
 
     public Task save(String title, String description, LocalDate dueDate) {
-        int id = generateId();
-        Task task = new Task(id, title, description, false, dueDate);
+        title = title.trim();
+        if (title.isBlank() || title.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+        Task task = new Task(generateId(), title, description, false, dueDate);
         tasks.add(task);
         return task;
     }

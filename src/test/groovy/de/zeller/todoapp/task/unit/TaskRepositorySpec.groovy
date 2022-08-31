@@ -143,4 +143,30 @@ class TaskRepositorySpec extends Specification {
         where:
         description << [null, "Beschreibung", ""]
     }
+
+    def "multi"() {
+        when:
+        def result = taskRepository.save(title, description, dueDate)
+
+        then:
+        thrown(IllegalArgumentException)
+
+        where:
+        [title, description, dueDate] << readTestdata("testdata_invalid_title.txt")
+    }
+
+    def readTestdata(String file) {
+        ArrayList result = []
+        List<String> lines = new File("src/test/resources/" + file)
+                .text
+                .split("\n")
+
+        lines.each {  line ->
+            def s = line.split(";")
+            [s[0], s[1], LocalDate.parse(s[2])]
+            result.add([s[0], s[1], LocalDate.parse(s[2])])
+        }
+        return result
+    }
+
 }
