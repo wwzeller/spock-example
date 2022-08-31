@@ -152,7 +152,7 @@ class TaskRepositorySpec extends Specification {
         thrown(IllegalArgumentException)
 
         where:
-        [title, description, dueDate] << readTestdata("testdata_invalid_title.txt")
+        [title, description, dueDate] << readTestdata("testdata.txt")
     }
 
     def readTestdata(String file) {
