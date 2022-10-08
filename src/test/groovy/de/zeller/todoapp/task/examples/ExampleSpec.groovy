@@ -1,6 +1,5 @@
 package de.zeller.todoapp.task.examples
 
-
 import spock.lang.Ignore
 import spock.lang.Specification
 
@@ -37,5 +36,31 @@ class ExampleSpec extends Specification {
 
         then: "die Werte sind konkateniert und durch Trennzeichen getrennt"
         result == "Hello World!"
+    }
+
+    def "test mit Mock"(){
+        given:
+        def mockedList = Mock(List)
+
+        and:
+        mockedList.size() >> 1
+
+        expect:
+        mockedList.size() == 1
+    }
+
+    @Ignore("is only for example")
+    def "iteraction testing"(){
+        given:
+        List mockedList = Mock()
+
+        when:
+        mockedList.size()
+
+        then:
+        0 * mockedList.size()
+        (1..4) * mockedList.size()
+        (1.._) * mockedList.size()
+        (_..4) * mockedList.size()
     }
 }
