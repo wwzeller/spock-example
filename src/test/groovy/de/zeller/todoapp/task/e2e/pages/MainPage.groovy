@@ -16,7 +16,7 @@ class MainPage extends Page {
         dueDateField { $("#due_date") }
         submitButton { $("#submit_button") }
         taskList {
-            $(".main > div:nth-child(2)").module(TaskListModule)
+            $(".main > #task_list").module(TaskListModule)
         }
     }
 
