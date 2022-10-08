@@ -144,29 +144,29 @@ class TaskRepositorySpec extends Specification {
         description << [null, "Beschreibung", ""]
     }
 
-    def "multi"() {
+    def "title validation"() {
         when:
-        def result = taskRepository.save(title, description, dueDate)
+        taskRepository.save(title as String, description as String, dueDate as LocalDate)
 
         then:
         thrown(IllegalArgumentException)
 
         where:
-        [title, description, dueDate] << readTestdata("testdata.txt")
+        [title, description, dueDate] << readTestdata("testdata_invalid_title.txt")
     }
 
     def readTestdata(String file) {
         ArrayList result = []
-        List<String> lines = new File("src/test/resources/" + file)
+
+        new File("src/test/resources/" + file)
                 .text
                 .split("\n")
+                .each { line ->
+                    def s = line.split(";")
+                    [s[0], s[1], LocalDate.parse(s[2])]
+                    result.add([s[0], s[1], LocalDate.parse(s[2])])
+                }
 
-        lines.each {  line ->
-            def s = line.split(";")
-            [s[0], s[1], LocalDate.parse(s[2])]
-            result.add([s[0], s[1], LocalDate.parse(s[2])])
-        }
-        return result
+        result
     }
-
 }
