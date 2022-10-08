@@ -8,6 +8,14 @@ import java.time.LocalDate
 class TaskRepositorySpec extends Specification {
     def taskRepository = new TaskRepository()
 
+    def "Aufgabenname darf nicht null sein"() {
+        when:
+        taskRepository.save(null, "Beschreibung", LocalDate.now())
+
+        then:
+        thrown(IllegalArgumentException)
+    }
+
     def "neu erstellte Task bekommt eine neue ID"() {
         when:
         def result = taskRepository.save("Lorem ipsum",

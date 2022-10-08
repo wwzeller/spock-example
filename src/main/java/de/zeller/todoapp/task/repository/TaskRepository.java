@@ -11,9 +11,12 @@ public class TaskRepository {
     private final List<Task> tasks = new ArrayList<>();
 
     public Task save(String title, String description, LocalDate dueDate) {
+        if (title == null) {
+            throw new IllegalArgumentException("title should not be null");
+        }
         title = title.trim();
         if (title.isBlank() || title.length() < 3) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("title length should be at least 3 characters");
         }
         Task task = new Task(generateId(), title, description, false, dueDate);
         tasks.add(task);

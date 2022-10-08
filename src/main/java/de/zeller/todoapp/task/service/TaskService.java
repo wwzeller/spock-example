@@ -14,7 +14,6 @@ public class TaskService {
     private final TaskRepository taskRepository;
 
     public Task createTask(String title, String description, LocalDate dueDate) {
-        if (title == null) throw new IllegalArgumentException();
         return taskRepository.save(title, description, dueDate);
     }
 

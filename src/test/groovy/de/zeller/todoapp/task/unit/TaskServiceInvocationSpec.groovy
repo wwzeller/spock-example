@@ -32,29 +32,12 @@ class TaskServiceInvocationSpec extends Specification {
         result.get(0).id == taskB.id
     }
 
-    def "Aufgabenname darf nicht null sein"() {
-        when:
-        taskService.createTask(null, "Beschreibung", LocalDate.now())
-
-        then:
-        thrown(IllegalArgumentException)
-    }
-
     def "ein Task wird in dem Repository gespeichert"() {
         when:
         taskService.createTask("Titel der Aufgabe", "Aufgabenbeschreibung...", LocalDate.now())
 
         then: "die Methode 'createNewTask' wird 1x aufgerufen"
         1 * taskRepository.save(_, _, _)
-    }
-
-    def "task with title is null not saved in repo"() {
-        when:
-        taskService.createTask(null, "Task description", LocalDate.now())
-
-        then:
-        thrown(IllegalArgumentException)
-        0 * taskRepository.save(_, _, _)
     }
 
     def "capture with mock"() {

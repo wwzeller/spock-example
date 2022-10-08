@@ -3,6 +3,8 @@ package de.zeller.todoapp.task.web;
 import de.zeller.todoapp.task.service.Task;
 import de.zeller.todoapp.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +19,17 @@ import java.util.stream.Collectors;
 @Controller
 @RequiredArgsConstructor
 public class TaskController {
+    private static final Logger log = LoggerFactory.getLogger(TaskController.class);
+
     private final TaskService taskService;
 
     @PostMapping("/create")
     public String create(@ModelAttribute TaskDto taskDto) {
-        taskService.createTask(taskDto.getTitle(), taskDto.getDescription(), LocalDate.parse(taskDto.getDueDate()));
+        try {
+            taskService.createTask(taskDto.getTitle(), taskDto.getDescription(), LocalDate.parse(taskDto.getDueDate()));
+        } catch (IllegalArgumentException ex) {
+            log.error("error during task creation", ex);
+        }
         return "redirect:";
     }
 
