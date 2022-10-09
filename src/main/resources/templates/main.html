@@ -14,7 +14,7 @@
         <h2>To-Do App</h2>
         <form method="post" th:action="@{/create}" th:object="${taskDto}">
             <input id="title" placeholder="Aufgabenname hinzufügen" type="text" size="30" th:field="*{title}"/>
-            <input id="description" placeholder="Beschreibung hinzufügen..." type="text" size="80"
+            <input id="description" placeholder="Beschreibung hinzufügen..." type="text" size="30"
                    th:field="*{description}"/>
             <input id="due_date" type="date" placeholder="01.06.2022" th:field="*{dueDate}"/>
             <input id="submit_button" class="button create_button" type="submit" value="Erstellen">
