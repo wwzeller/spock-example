@@ -38,7 +38,7 @@ class ExampleSpec extends Specification {
         result == "Hello World!"
     }
 
-    def "test mit Mock"(){
+    def "test mit Mock"() {
         given:
         def mockedList = Mock(List)
 
@@ -50,7 +50,7 @@ class ExampleSpec extends Specification {
     }
 
     @Ignore("is only for example")
-    def "iteraction testing"(){
+    def "iteraction testing"() {
         given:
         List mockedList = Mock()
 
@@ -58,9 +58,9 @@ class ExampleSpec extends Specification {
         mockedList.size()
 
         then:
-        0 * mockedList.size()
-        (1..4) * mockedList.size()
-        (1.._) * mockedList.size()
-        (_..4) * mockedList.size()
+        0 * mockedList.size()      // keine Aufrufe
+        (1..4) * mockedList.size() // zwischen eins und vier Aufrufe
+        (1.._) * mockedList.size() // mindestens ein Aufruf
+        (_..4) * mockedList.size() // maximal vier Aufrufe
     }
 }

@@ -6,6 +6,18 @@ import spock.lang.Unroll
 
 class StringBuilderSpec extends Specification {
 
+    def "delete char throws StringIndexOutOfBoundsException"() {
+        given:
+        def str = "anyString"
+        def sb = new StringBuilder(str)
+
+        when:
+        sb.deleteCharAt(str.length())
+
+        then:
+        thrown(StringIndexOutOfBoundsException)
+    }
+
     @Unroll("remove from '#source' the substring begins at #start and up to #end.")
     def "remove the substring"() {
         given:
